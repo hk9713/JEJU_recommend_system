@@ -40,6 +40,7 @@ def cbow_modeling(df):
 
 # recommend system
 def recommend_system(df, model_cbow):
+    st.title("제주도 맛집 추천 시스템")
     flag = True
     while flag:
         input_keyword = st.text_input(label="Search Keyword", value="키워드를 입력해주세요")
@@ -62,12 +63,10 @@ def recommend_system(df, model_cbow):
         if len(index) > 5:
             index=index[:5]
         
-        return con.write(df['상호명'][index])
+        return con.table(df['상호명'][index])
 
 # streamlit
 def main():
-    st.title("제주도 맛집 추천 시스템")
-
     df = setting_data()
     df, model = cbow_modeling(df)
     recommend_system(model)
