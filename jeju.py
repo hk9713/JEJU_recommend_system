@@ -1,7 +1,7 @@
 from konlpy.tag import Okt
 import pandas as pd
 import gensim
-import jeju as st
+import streamlit as st
 
 # preparing dataset
 def setting_data():
