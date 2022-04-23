@@ -3,7 +3,7 @@ import pickle
 import streamlit as st
 
 def main():
-    df = pd.read_csv('final.csv')
+    df = pd.read_csv('data/final.csv')
     with open('cbow_model.pickle','rb') as f:
         model_cbow = pickle.load(f)
 
