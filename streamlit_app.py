@@ -21,7 +21,7 @@ def main():
             con.warning("키워드를 입력해주세요")
         else:
             try:
-                con.write(f"요청하신 키워드는 '{str(main_keyword)}' 입니다.")
+                con.write(f"요청하신 키워드는 '{str(input_keyword)}' 입니다.")
                 keywords=model_cbow.wv.most_similar(input_keyword)
                 main_keyword=keywords[0][0]
                 flag = True
