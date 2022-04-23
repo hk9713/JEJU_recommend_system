@@ -12,18 +12,16 @@ def main():
     input_keyword = st.text_input(label="Search Keyword", value="키워드를 입력해주세요")
 
     if st.button("Search"):
-        flag = True
-        while flag:
-            con = st.container()
-            con.caption("Result")
-            try:
-                keywords=model_cbow.wv.most_similar(input_keyword)
-                main_keyword=keywords[0][0]
-                con.write(f"요청하신 키워드는 '{str(main_keyword)}' 입니다.")
-                flag = False
-            except:
-                flag = True
-                con.info("유사한 키워드를 가지고 있는 식당이 없습니다. 다른 키워드를 입력해주세요")
+        con = st.container()
+        con.caption("Result")
+        try:
+            keywords=model_cbow.wv.most_similar(input_keyword)
+            main_keyword=keywords[0][0]
+            con.write(f"요청하신 키워드는 '{str(main_keyword)}' 입니다.")
+            flag = False
+        except:
+            flag = True
+            con.info("유사한 키워드를 가지고 있는 식당이 없습니다. 다른 키워드를 입력해주세요")
 
         weighted_series=pd.Series(df['token'].apply(lambda x:1))
         for keyword, weight in keywords:
