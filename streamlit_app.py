@@ -11,6 +11,8 @@ def main():
     
     input_keyword = st.text_input(label="Search Keyword", value="키워드를 입력해주세요")
     
+    flag = False
+  
     if st.button("Search"):
         con = st.container()
         con.caption("Result")
