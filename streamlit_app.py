@@ -1,18 +1,19 @@
 import pandas as pd
-import gensim
+import pickle
 import streamlit as st
 
-
 def main():
-    df = pd.read_csv('data/result_jeju.csv')
-    model_cbow = gensim.models.Word2Vec(sentences=df['review_token'], vector_size=100, window=3, min_count=0,workers=4,sg=0)
+    df = pd.read_csv('final.csv')
+    with open('cbow_model.pickle','rb') as f:
+        model_cbow = pickle.load(f)
 
-    st.title("제주도 맛집 추천 시스템")
+    st.title("키워드를 통한 제주도 맛집 추천 시스템")
 
-    flag = True
-    while flag:
-        input_keyword = st.text_input(label="Search Keyword", value="키워드를 입력해주세요")
-        if st.button("Search"):
+    input_keyword = st.text_input(label="Search Keyword", value="키워드를 입력해주세요")
+
+    if st.button("Search"):
+        flag = True
+        while flag:
             con = st.container()
             con.caption("Result")
             try:
@@ -24,14 +25,17 @@ def main():
                 flag = True
                 con.info("유사한 키워드를 가지고 있는 식당이 없습니다. 다른 키워드를 입력해주세요")
 
-        count_series = pd.Series(df['review_token'].apply(lambda x:x.count(main_keyword)))
-        count_series = count_series.sort_values(ascending=False)
+        weighted_series=pd.Series(df['token'].apply(lambda x:1))
+        for keyword, weight in keywords:
+            count = pd.Series(df['token'].apply(lambda x:x.count(keyword)))
+            weighted_series += count*weight
+        weighted_series = weighted_series.sort_values(ascending=False)
 
-        index = count_series[count_series>0].index
+        index = weighted_series[weighted_series>0].index
         if len(index) > 5:
             index=index[:5]
 
-    con.table(df['상호명'][index])
-    
+        con.table(df['상호명'][index])
+        
 if __name__ == '__main__' :
     main()
