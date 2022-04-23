@@ -8,7 +8,8 @@ def main():
         model_cbow = pickle.load(f)
 
     st.title("키워드를 통한 제주도 맛집 추천 시스템")
-    st.table(df.head())
+    testword = model_cbow.wv.most_similar("커피")
+    st.write(testword[0][0])
     
     input_keyword = st.text_input(label="Search Keyword", value="키워드를 입력해주세요")
     
