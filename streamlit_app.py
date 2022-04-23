@@ -24,7 +24,7 @@ def main():
             con.info("유사한 키워드를 가지고 있는 식당이 없습니다. 다른 키워드를 입력해주세요")
             flag = False
          
-    if flag = True:
+    if flag:
         weighted_series=pd.Series(df['token'].apply(lambda x:1))
         for keyword, weight in keywords:
             count = pd.Series(df['token'].apply(lambda x:x.count(keyword)))
