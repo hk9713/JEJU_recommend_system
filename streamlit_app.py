@@ -17,14 +17,17 @@ def main():
         con = st.container()
         con.caption("Result")
         
-        try:
-            con.write(f"요청하신 키워드는 '{str(main_keyword)}' 입니다.")
-            keywords=model_cbow.wv.most_similar(input_keyword)
-            main_keyword=keywords[0][0]
-            flag = True
-        except:
-            con.info("유사한 키워드를 가지고 있는 식당이 없습니다. 다른 키워드를 입력해주세요")
-            flag = False
+        if len(input_keyword) == 0:
+            con.warning("키워드를 입력해주세요")
+        else:
+            try:
+                con.write(f"요청하신 키워드는 '{str(main_keyword)}' 입니다.")
+                keywords=model_cbow.wv.most_similar(input_keyword)
+                main_keyword=keywords[0][0]
+                flag = True
+            except:
+                con.info("유사한 키워드를 가지고 있는 식당이 없습니다. 다른 키워드를 입력해주세요")
+                flag = False
          
     if flag:
         weighted_series=pd.Series(df['token'].apply(lambda x:1))
