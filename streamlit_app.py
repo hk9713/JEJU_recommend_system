@@ -8,7 +8,7 @@ def main():
 
     st.title("키워드를 통한 제주도 맛집 추천 시스템")
 
-    input_keyword = st.text_input(label="Search Keyword", value="키워드를 입력해주세요")
+    input_keyword = st.text_input(label="Search Keyword", value="")
     
     flag = False
   
