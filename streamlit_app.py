@@ -40,7 +40,7 @@ def main():
         if len(index) > 5:
             index=index[:5]
         
-        con.table(df['상호명'][index])
+        con.table(df['상호지점명'][index])
         
         
 if __name__ == '__main__' :
