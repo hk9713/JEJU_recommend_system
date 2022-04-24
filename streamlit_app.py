@@ -1,6 +1,7 @@
 import pandas as pd
 import pickle
 import streamlit as st
+import gensim
 
 def main():
     df = pd.read_csv('data/final.csv')
