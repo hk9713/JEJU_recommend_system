@@ -4,7 +4,7 @@ import gensim
 
 def main():
     df = pd.read_csv('data/final.csv')
-    model_cbow = gensim.models.Word2Vec.load('data/w2v_model')
+    model_cbow = gensim.models.Word2Vec.load('data/cbow_model')
 
     st.title("키워드를 통한 제주도 맛집 추천 시스템")
 
