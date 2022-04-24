@@ -22,7 +22,7 @@ def main():
             con.write(f"요청하신 키워드는 '{str(input_keyword)}' 입니다.")
             keywords=model_cbow.wv.most_similar(input_keyword)
             main_keyword=keywords[0][0]
-            flag = False
+            flag = True
          
     if flag:
         weighted_series=pd.Series(df['token'].apply(lambda x:1))
