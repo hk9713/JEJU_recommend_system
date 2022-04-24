@@ -1,12 +1,10 @@
 import pandas as pd
-import pickle
 import streamlit as st
 import gensim
 
 def main():
     df = pd.read_csv('data/final.csv')
-    with open('cbow_model.pickle','rb') as f:
-        model_cbow = pickle.load(f)
+    model_cbow = gensim.models.Word2Vec.load('data/w2v_model')
 
     st.title("키워드를 통한 제주도 맛집 추천 시스템")
 
