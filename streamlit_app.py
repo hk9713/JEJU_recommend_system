@@ -11,6 +11,7 @@ def main():
     st.title("제주픽")
     st.write("안녕하세요! 저희는 💫이달의사자🦁 입니다.")
     st.write("아래 검색창에 키워드를 입력하시면 어울리는 식당을 추천해드립니다😊")
+    st.write("\n")
 
     input_keyword = st.text_input(label="Search Keyword", value="")
     
@@ -44,7 +45,7 @@ def main():
         if len(index) > 5:
             index=index[:5]
         
-        # con.table(df['상호지점명'][index])
+        con.table(df['상호지점명'][index])
         # 검색 결과 df로 만들기
         recommend_restaurant = df['상호지점명'][index]
         rec_res=recommend_restaurant.to_frame()
