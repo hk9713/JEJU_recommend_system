@@ -10,7 +10,7 @@ def main():
 
     st.title("제주픽")
     st.write("안녕하세요! 저희는 💫2달의사자🦁 입니다")
-    st.write("아래 검색창에 키워드를 입력하시면 어울리는 제주도 식당을 추천해드립니다 :)")
+    st.write("아래 검색창에 키워드를 입력하시면 어울리는 제주도 식당을 추천해드립니다-!")
     st.write("\n")
 
     input_keyword = st.text_input(label="Search Keyword", value="")
